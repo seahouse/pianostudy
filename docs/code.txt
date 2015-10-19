@@ -1,0 +1,10 @@
+登录/注册
+	LogonDlg
+
+曲目欣赏播放
+	SyllabusMusicDlg
+	音频播放
+		AutoFirstDialog
+		
+课程
+	Course

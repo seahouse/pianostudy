@@ -1,0 +1,70 @@
+﻿http://211.149.242.125:90/course/index.php?m=Api&c=Course&a=courseList&page=1
+http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseList&page=1
+http://e.gangguo.net/index.php?m=Api&c=Question&a=question&id=6
+
+课程列表
+http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseList&page=1&rows=8
+参数说明
+page 分页
+rows 分页数
+
+课程明细
+http://120.55.119.93/course/index.php?m=Api&c=Course&a=course&id=12
+
+参数说明
+id	课程ID
+
+字段说明:
+course_id		课程ID
+course_name		第几课
+title			标题
+type			类别，1：成人，2：儿童
+pic_url			主图片
+note			简介
+content			详细内容
+video_url		视频链接
+create_at		创建日期
+
+
+曲目列表
+http://120.55.119.93/course/index.php?m=Api&c=Music&a=musicList&page=1&rows=8
+参数说明
+page 分页
+rows 分页数
+
+曲目明细
+http://120.55.119.93/course/index.php?m=Api&c=Music&a=music&id=6
+参数说明
+id	曲目ID
+
+字段说明
+music_id		曲目ID
+title			标题
+type			类别，1：成人，2：儿童
+pic_url			主图片
+is_follow		是否跟弹  1:是，2：否
+video_url		视频链接
+create_at		创建日期
+
+
+
+题库列表
+http://120.55.119.93/course/index.php?m=Api&c=Question&a=questionList&page=1&rows=7&course_id=12
+参数说明
+page 分页
+rows 分页数
+course_id	课程ID
+
+题库明细
+http://120.55.119.93/course/index.php?m=Api&c=Question&a=question&id=6
+参数说明
+id	题库ID
+
+字段说明
+question_id		题ID
+wiki			知识点
+type			类别，1：成人，2：儿童
+question		题目
+answer			答案
+right_answer		正确答案
+create_at		创建日期
