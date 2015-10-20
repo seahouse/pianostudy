@@ -36,6 +36,7 @@ private slots:
     void sLoginResponse(QVariant loginResponse);
     void sRegResponse(QVariant response);
 
+    void sSelectDate();
 private:
     Ui::LogonDlg *ui;
     QString _sCapBtnStyleSheet; //界面上方登录和注册按钮样式

@@ -5,7 +5,6 @@
 #include "NetWork.h"
 #include"allwidget.h"
 #include<QDesktopWidget>
-#include <QWebSettings>
 #include <QUrl>
 
 /*
@@ -47,8 +46,7 @@ int main(int argc, char *argv[])
     AllWidget allwidget;
 
 
-//    QWebSettings *webSettings = QWebSettings::globalSettings();
-//    webSettings->setUserStyleSheetUrl(QUrl("web.css"));
+
 
     Widget w;
     QApplication::connect(&w,SIGNAL(saveWindowsInfo(QObject*)),&allwidget,SLOT(saveRectList(QObject*)));

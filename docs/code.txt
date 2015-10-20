@@ -1,10 +1,15 @@
-登录/注册
-	LogonDlg
 
 曲目欣赏播放
 	SyllabusMusicDlg
 	音频播放
 		AutoFirstDialog
 		
-课程
-	Course
+主界面	Widget
+	登录/注册	LogonDlg
+	课程	Course
+		基础课程	SyllabusBasicDlg
+			课后习题	PraxisDlg
+				请求课程列表	http://120.55.119.93/course/index.php?m=Api&c=Question&a=questionList&page=1&rows=7&course_id=12
+				某个习题	Praxis
+		曲目欣赏	SyllabusMusicDlg
+		

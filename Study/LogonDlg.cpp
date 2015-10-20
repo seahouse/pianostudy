@@ -41,8 +41,8 @@ LogonDlg::LogonDlg(QWidget *parent) :
         ui->_pRegisterDateLab->setStyleSheet(sEditStyleSheet);
         ui->_pRegisterBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/registerBtn.png);}");
         ui->_pRegisterExitBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/cancelBtn.png);}");
-        ui->_pRegisterDateEdit->setStyleSheet(sEditStyleSheet);
-        ui->_pRegisterDateBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/date.png);}");
+//        ui->_pRegisterDateEdit->setStyleSheet(sEditStyleSheet);
+//        ui->_pRegisterDateBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/date.png);}");
         ui->_pRegisterUserLab->setStyleSheet("QLabel{color:red;}");
     }
 
@@ -71,8 +71,8 @@ LogonDlg::LogonDlg(QWidget *parent) :
 //        ui->_pRegisterBtn->move(100, 246);
 //        ui->_pRegisterExitBtn->move(246, 246);
 
-        ui->_pRegisterDateBtn->setParent(ui->_pRegisterDateEdit);
-        ui->_pRegisterDateBtn->move(145, 5);
+//        ui->_pRegisterDateBtn->setParent(ui->_pRegisterDateEdit);
+//        ui->_pRegisterDateBtn->move(145, 5);
         ui->_pRegisterUserLab->move(310, 195);
         ui->_pCalendarWidget->hide();
     }
@@ -89,6 +89,8 @@ LogonDlg::LogonDlg(QWidget *parent) :
         ui->_pLoginWidget->setStyleSheet("QWidget{border-image:non;}");
     }
 
+    ui->deBirthday->setDate(QDate::currentDate());
+//    connect(ui->_pRegisterDateBtn, SIGNAL(clicked(bool)), this, SLOT(sSelectDate()));
 }
 
 LogonDlg::~LogonDlg()
@@ -142,7 +144,8 @@ void LogonDlg::on__pRegisterBtn_clicked()
     QString pwd = ui->_pRegisterPasswordEdit->text().trimmed();
     QString tel = ui->_pRegisterPhoneEdit->text().trimmed();
     QString addr = ui->_pRegisterAddressEdit->text().trimmed();
-    QString birthday = ui->_pRegisterDateEdit->text().trimmed();
+//    QString birthday = ui->_pRegisterDateEdit->text().trimmed();
+    QString birthday = ui->deBirthday->text().trimmed();
     QString sUrl = QString("http://120.55.119.93/course/index.php?m=Api&c=user&a=reg&username=%1&pwd=%2&tel=%3&addr=%4&birthday=%5")
             .arg(username).arg(pwd).arg(tel).arg(addr).arg(birthday);
 
@@ -194,4 +197,10 @@ void LogonDlg::sRegResponse(QVariant response)
         QMessageBox::critical(this, tr("注册失败"),
                               tr("注册失败."));
     }
+}
+
+void LogonDlg::sSelectDate()
+{
+//    ui->_pCalendarWidget->move(ui->_pRegisterDateBtn->geometry().x(), ui->_pRegisterDateBtn->geometry().y());
+//    ui->_pCalendarWidget->show();
 }
