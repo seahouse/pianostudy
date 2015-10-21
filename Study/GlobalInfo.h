@@ -1,6 +1,8 @@
 #ifndef STRUCTINFO
 #define STRUCTINFO
 
+#include <QString>
+
 #define NET_WORK QEvent::User+1
 #define SYLLABUS_SET_MAX_PAGE QEvent::User+2
 #define SYLLABUS_UPDATE_UI QEvent::User+3
@@ -72,6 +74,7 @@ struct REG_RESPONSE
 #define PADDING 2
 enum Direction { UP=0, DOWN=1, LEFT, RIGHT, LEFTTOP, LEFTBOTTOM, RIGHTBOTTOM, RIGHTTOP, NONE };
 
+extern QString g_uid;
 
 #endif // STRUCTINFO
 

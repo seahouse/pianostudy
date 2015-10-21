@@ -169,11 +169,13 @@ void LogonDlg::sLoginResponse(QVariant loginResponse)
     LOGIN_RESPONSE data = loginResponse.value<LOGIN_RESPONSE>();
     if (data.sStatus == "1")
     {
+        g_uid = data.sMsg;
         emit Go();
         this->close();
     }
     else
     {
+        g_uid = "-1";
         QMessageBox::critical(this, tr("登录失败"),
                               tr("密码或用户名错误."));
     }

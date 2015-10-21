@@ -111,6 +111,15 @@ void PraxisDlg::on__pSbumitBtn_clicked()
     CustomEvent *e = new CustomEvent(QEvent::Type(UPDATE_COURSE_SCORE));
     e->_nScore = nScore;
     e->_sCourseId = _sCourseId;
+
+    /// 记录分数到服务器
+    QString sUrl = QString("http://120.55.119.93/course/index.php?m=Api&c=user&a=score&uid=%1&cid=%2&score=%3")
+            .arg(g_uid).arg(_sCourseId).arg(QString::number(nScore));
+
+    NetWork *pNetWork = NetWork::GetInstance();
+//    connect(pNetWork, SIGNAL(regResponse(QVariant)), this, SLOT(sRegResponse(QVariant)));
+    pNetWork->SetUrl(this, objectName() + "_score", sUrl);
+
     QCoreApplication::sendEvent(_pCourseObj, e); //将得分设置到课程列表界面
  //   this->close();
     this->hide();

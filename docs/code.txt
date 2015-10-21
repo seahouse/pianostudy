@@ -6,10 +6,13 @@
 		
 主界面	Widget
 	登录/注册	LogonDlg
-	课程	Course
-		基础课程	SyllabusBasicDlg
-			课后习题	PraxisDlg
-				请求课程列表	http://120.55.119.93/course/index.php?m=Api&c=Question&a=questionList&page=1&rows=7&course_id=12
-				某个习题	Praxis
-		曲目欣赏	SyllabusMusicDlg
+	课程列表	SyllabusWidget
+		获取基础课程列表	http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseList&page=1&rows=8
+		课程	Course
+			基础课程	SyllabusBasicDlg
+				课后习题	PraxisDlg
+					请求课程列表	http://120.55.119.93/course/index.php?m=Api&c=Question&a=questionList&page=1&rows=7&course_id=12
+					计分			http://120.55.119.93/course/index.php?m=Api&c=user&a=score&uid=15&cid=12&score=16
+					某个习题	Praxis
+			曲目欣赏	SyllabusMusicDlg
 		

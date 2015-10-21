@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     mytextbrower.cpp \
     allwidget.cpp \
     autofirstdialog.cpp \
-    keyknowledge.cpp
+    keyknowledge.cpp \
+    GlobalInfo.cpp
 
 HEADERS  += widget.h \
     CapBtn.h \

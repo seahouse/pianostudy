@@ -99,7 +99,6 @@ msg 错误信息 成功则返回 UID
 http://120.55.119.93/course/index.php?m=Api&c=user&a=score&uid=
 参数说明 (特殊字符及中文需做URL编码处理)
 uid  用户编号
-qid  题库编号
 cid  课程编号
 score  分数
 
