@@ -37,6 +37,9 @@ SyllabusWidget::SyllabusWidget(QWidget *parent) :
 
     _mapLeftPressBtn["基础课程"] = 1;
     _mapLeftPressBtn["曲目欣赏"] = 1;
+
+    NetWork *pNetWork = NetWork::GetInstance();
+    connect(pNetWork, SIGNAL(userscoreResponse(QVariant)), this, SLOT(sUserscoreResponse(QVariant)));
 }
 
 SyllabusWidget::~SyllabusWidget()
@@ -215,6 +218,14 @@ void SyllabusWidget::UpdateUI()
     {
         emit SetLookToPage(Iter->second);
     }
+
+    /// 获取用户分数
+    QString sUrl = QString("http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseListByUid&uid=%1")
+            .arg(g_uid);
+
+    NetWork *pNetWork = NetWork::GetInstance();
+//    connect(pNetWork, SIGNAL(regResponse(QVariant)), this, SLOT(sRegResponse(QVariant)));
+    pNetWork->SetUrl(this, objectName() + "_score", sUrl);
 }
 
 void SyllabusWidget::GetLookToPage(int n)
@@ -234,5 +245,19 @@ void SyllabusWidget::RecevieAutoFirst(QVariant Info){
         AUTO_FIRST auto_first = Info.value<AUTO_FIRST>();
         this->autoFirst.sCtype=auto_first.sCtype;
         this->autoFirst.sURL=auto_first.sURL;
+    }
+}
+
+void SyllabusWidget::sUserscoreResponse(QVariant response)
+{
+    QList<USER_SCORE> userscoreList = response.value<QList<USER_SCORE> >();
+    foreach (USER_SCORE userScore, userscoreList) {
+        foreach (Course *course, _vecCourse) {
+            if (course->getCourseId() == userScore.sCourseId)
+            {
+                course->setScore(userScore.sScore);
+                break;
+            }
+        }
     }
 }

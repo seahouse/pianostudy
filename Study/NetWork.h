@@ -14,6 +14,7 @@ Q_DECLARE_METATYPE(PRAXIS_INFO)
 Q_DECLARE_METATYPE(AUTO_FIRST)
 Q_DECLARE_METATYPE(LOGIN_RESPONSE)
 Q_DECLARE_METATYPE(REG_RESPONSE)
+Q_DECLARE_METATYPE(USER_SCORE)
 
 class NetWork : public QObject
 {
@@ -24,6 +25,7 @@ signals:
     void UpdateUI(int nMaxPage);
     void sLoginResponse(QVariant loginResponse);     // 发送登录信息信号
     void regResponse(QVariant response);            // 注册的返回信息信号
+    void userscoreResponse(QVariant response);            // 用户信息列表的返回信息信号
 public:
     void SetUrl(QObject *pRecvObj, QString sParseUiName, QString sUrl);
     void post(const QString &sUrl, const QString &data);
@@ -36,6 +38,7 @@ private:
     void ParsePraxis(const QJsonValue &jsonValue);  //解析课程习题的内容
     void parseLogin(const QJsonObject &jsonObject);   //解析登录的返回信息
     void parseReg(const QJsonObject &jsonObject);       //解析注册的返回信息
+    void parseUserScore(const QJsonArray &jsonArray); //解析用户分数
     void customEvent(QEvent * event);
     void ParseJson(QByteArray &byteArray);
     QString GetFieldValue(QJsonObject &jsonObj ,QString sKey); //获取键对应的值

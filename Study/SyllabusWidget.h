@@ -32,6 +32,7 @@ public:
 private slots:
     void ReceiveStructInfo(int nCourseId, QVariant varStructInfo); //接收NetWork解析的每一课json信息
     void GetLookToPage(int n); //保存观看到了第几页，n：按钮上的数字文本
+    void sUserscoreResponse(QVariant response);     //加载用户分数
 private:
     void SetMaxPage(int n);
     void UpdateUI();

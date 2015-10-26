@@ -26,6 +26,10 @@ public:
     void SetScoringClok(QString sArg);
     void SetScoringUnLock(QString sArg);
 	QPixmap PixmapToRound(const QPixmap &src, int radius);
+
+    QString getCourseId() const;
+    void setScore(const QString &score);
+
 private:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);

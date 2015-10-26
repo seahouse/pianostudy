@@ -107,9 +107,8 @@ status  状态 == 1 成功， 其他错误
 msg 提示信息
 
 
-通过用户ID查询课程所得分数
-http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseListByUid&page=1&rows=8&uid=4
+通过用户ID查询课程列表
+http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseListByUid&uid=3
+http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseListByUid&page=1&rows=8&uid=15
 参数说明
-page 分页
-rows 分页数
 uid 用户ID

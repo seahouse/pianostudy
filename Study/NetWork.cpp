@@ -254,6 +254,34 @@ void NetWork::parseReg(const QJsonObject &jsonObject)
     emit regResponse(var);
 }
 
+void NetWork::parseUserScore(const QJsonArray &jsonArray)
+{
+    QList<USER_SCORE> dataResponse;
+    for (int i = 0; i < jsonArray.size(); i++)
+    {
+        QJsonObject jsonObject = jsonArray.at(i).toObject();
+
+        USER_SCORE userScore;
+        userScore.sCourseId = jsonObject.value("course_id").toString();
+        userScore.sScore = jsonObject.value("score").toString();
+
+        dataResponse.append(userScore);
+    }
+//    if (jsonObject.contains("status"))
+//    {
+//        dataResponse.sStatus = jsonObject.value("status").toString();
+
+//    }
+//    if (jsonObject.contains("msg"))
+//    {
+//        dataResponse.sMsg = jsonObject.value("msg").toString();
+//    }
+
+    QVariant var;
+    var.setValue(dataResponse);
+    emit userscoreResponse(var);
+}
+
 void NetWork::ParseJson(QByteArray &byteArray)
 {
     QJsonParseError jsonError;
@@ -338,6 +366,14 @@ void NetWork::ParseJson(QByteArray &byteArray)
             }
             if (ceUpdateUI != NULL)
                 QCoreApplication::sendEvent(_pRecvObj, ceUpdateUI);
+        }
+        else if (jsonDoucment.isArray())
+        {
+            QJsonArray jsonArray = jsonDoucment.array();
+            if (_sParseUiName == tr("基础课程_score"))  /// 解析用户分数
+            {
+                parseUserScore(jsonArray);
+            }
         }
     }
     else

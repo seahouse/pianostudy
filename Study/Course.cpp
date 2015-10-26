@@ -237,3 +237,13 @@ QPixmap Course::PixmapToRound(const QPixmap &src, int radius)
 void Course::setAutoFirst(const AUTO_FIRST autofirst){
     _autofirst=autofirst;
 }
+
+QString Course::getCourseId() const
+{
+    return _classInfo.sCourseId;
+}
+
+void Course::setScore(const QString &score)
+{
+    ui->_pScoringNumLab->setText(score);
+}

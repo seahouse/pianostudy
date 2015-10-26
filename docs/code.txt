@@ -8,6 +8,7 @@
 	登录/注册	LogonDlg
 	课程列表	SyllabusWidget
 		获取基础课程列表	http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseList&page=1&rows=8
+		获取用户课程分数	http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseListByUid&uid=3
 		课程	Course
 			基础课程	SyllabusBasicDlg
 				课后习题	PraxisDlg

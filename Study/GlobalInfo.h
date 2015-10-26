@@ -71,6 +71,12 @@ struct REG_RESPONSE
     QString sMsg;
 };
 
+struct USER_SCORE
+{
+    QString sCourseId;
+    QString sScore;
+};
+
 #define PADDING 2
 enum Direction { UP=0, DOWN=1, LEFT, RIGHT, LEFTTOP, LEFTBOTTOM, RIGHTBOTTOM, RIGHTTOP, NONE };
 
