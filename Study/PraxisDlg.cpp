@@ -5,10 +5,9 @@
 #include <QApplication>
 #include<QMouseEvent>
 #include<QDesktopWidget>
-
-
-
-
+#include <QTimer>
+#include <QLabel>
+#include <QMovie>
 
 
 
@@ -19,7 +18,8 @@ int PraxisDlg::desktopY=0;
 
 PraxisDlg::PraxisDlg(QString sCourseId, QWidget *parent, QObject *pCourseObj) :
     QDialog(parent),ready(false),
-    ui(new Ui::PraxisDlg),_menuBtn(178, 6),_b(true)
+    ui(new Ui::PraxisDlg),_menuBtn(178, 6),_b(true),
+    _total(0)
 {
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -57,7 +57,11 @@ PraxisDlg::PraxisDlg(QString sCourseId, QWidget *parent, QObject *pCourseObj) :
     isLeftPressDown = false;
     this->dir = NONE;
     this->setMouseTracking(true);
-    //
+
+    _timer = new QTimer;
+    connect(_timer, SIGNAL(timeout()), this, SLOT(sTimeout()));
+    _lblGif = new QLabel(this);
+    _lblGif->setWindowFlags(Qt::FramelessWindowHint);
 }
 
 PraxisDlg::~PraxisDlg()
@@ -73,6 +77,7 @@ void PraxisDlg::customEvent(QEvent *event)
    case PRAXIS_SET_MAX_PAGE:
    {
        CustomEvent *e = static_cast<CustomEvent*>(event);
+       _total = e->_total;
        SetMaxPage(e->_nMaxPage);
        e->accept();
        break;
@@ -91,7 +96,7 @@ void PraxisDlg::customEvent(QEvent *event)
  //connect(p, SIGNAL(SendAnswer(QString,QString,bool)), this, SLOT(ReceiveAnswer(QString,QString,bool)));
 void PraxisDlg::on__pSbumitBtn_clicked()
 {
-    int n = _mapAnswer.size(); //总题数
+
     int nOK = 0; //答对的题数
     map<QString, ANSWER>::iterator Iter = _mapAnswer.begin();
     while( Iter != _mapAnswer.end() )
@@ -103,9 +108,9 @@ void PraxisDlg::on__pSbumitBtn_clicked()
         ++Iter;
     }
     int nScore = 0;
-    if( n > 0 )
+    if( _total > 0 )
     {
-        nScore = 100/n*nOK;
+        nScore = 100/_total*nOK;
     }
 
     CustomEvent *e = new CustomEvent(QEvent::Type(UPDATE_COURSE_SCORE));
@@ -113,6 +118,9 @@ void PraxisDlg::on__pSbumitBtn_clicked()
     e->_sCourseId = _sCourseId;
 
     /// 记录分数到服务器
+    qDebug() << g_uid;
+    qDebug() << _sCourseId;
+    qDebug() << nScore;
     QString sUrl = QString("http://120.55.119.93/course/index.php?m=Api&c=user&a=score&uid=%1&cid=%2&score=%3")
             .arg(g_uid).arg(_sCourseId).arg(QString::number(nScore));
 
@@ -121,7 +129,31 @@ void PraxisDlg::on__pSbumitBtn_clicked()
     pNetWork->SetUrl(this, objectName() + "_score", sUrl);
 
     QCoreApplication::sendEvent(_pCourseObj, e); //将得分设置到课程列表界面
- //   this->close();
+
+    /// 根据分数展示gif动画
+    QString fileName;
+    if (nScore >= 90)
+        fileName = ":/images/success.gif";
+    else
+        fileName = ":/images/fail.gif";
+    QPixmap pix(fileName);
+
+    _lblGif->setFixedSize(pix.width(), pix.height());
+    _lblGif->move(this->width() / 2 - pix.width() / 2, this->height() / 2 - pix.height() / 2);
+    QMovie *movie = new QMovie(fileName);
+    _lblGif->setMovie(movie);
+    _lblGif->show();
+    _lblGif->raise();
+    movie->start();
+    _timer->start(3000);
+
+//    this->hide();
+}
+
+void PraxisDlg::sTimeout()
+{
+    _timer->stop();
+    _lblGif->hide();
     this->hide();
 }
 

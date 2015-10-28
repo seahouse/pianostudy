@@ -11,6 +11,8 @@
 
 using namespace std;
 
+class QLabel;
+
 namespace Ui {
 class PraxisDlg;
 }
@@ -38,6 +40,8 @@ private slots:
     void ReceiveAnswer(QString sQuestionID, QString sAnswer, bool bIsOK);
     void on__pSmallBtn_clicked();
 
+    void sTimeout();
+
 private:
     void SetMaxPage(int n);
     void UpdateUI();
@@ -51,7 +55,7 @@ private:
     map<int, PRAXIS_INFO> _mapPraxis;
     bool _b; //临时的以后修改menubtn类就会删掉
     QObject *_pCourseObj;
-
+    int _total;     // 习题总个数，用于计算分数
 
 
 
@@ -87,7 +91,8 @@ private:
 private:
     bool ready;
 
-
+    QTimer *_timer;
+    QLabel *_lblGif;
 };
 
 #endif // PRAXISDLG_H

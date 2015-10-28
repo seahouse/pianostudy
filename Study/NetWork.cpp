@@ -306,6 +306,7 @@ void NetWork::ParseJson(QByteArray &byteArray)
             else if( _sParseUiName == "课程习题" )
             {
                 ceSetMaxPage = new CustomEvent(QEvent::Type(PRAXIS_SET_MAX_PAGE));
+                ceSetMaxPage->_total = sMaxPage.toInt();
                 ceSetMaxPage->_nMaxPage = sMaxPage.toInt()/7+1;
             }
             if (ceSetMaxPage != NULL)

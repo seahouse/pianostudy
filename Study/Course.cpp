@@ -70,7 +70,7 @@ void Course::SetScoringUnLock(QString sArg)
     ui->_pScoringLab->setText("我的分数");
     ui->_pScoringNumLab->setGeometry(362, 46, 33, 24);
     ui->_pScoringNumLab->setStyleSheet(_sScoringNumStyleSheet.arg(sArg));
-    ui->_pScoringNumLab->setText("99");
+    ui->_pScoringNumLab->setText("0");
 }
 
 void Course::paintEvent(QPaintEvent *event)
@@ -104,7 +104,9 @@ void Course::customEvent(QEvent * event)
         if( e->_sCourseId == _classInfo.sCourseId )
         {
             ui->_pScoringNumLab->setText(QString::number(e->_nScore));
-
+            /// 根据分数确定是否开放下一课程
+            if (e->_nScore >= 90)
+                emit unlockNext();
         }
         e->accept();
    }

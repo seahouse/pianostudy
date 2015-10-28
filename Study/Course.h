@@ -30,6 +30,9 @@ public:
     QString getCourseId() const;
     void setScore(const QString &score);
 
+signals:
+    void unlockNext();
+
 private:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);

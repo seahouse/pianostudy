@@ -22,6 +22,7 @@ SyllabusWidget::SyllabusWidget(QWidget *parent) :
     for(int i=0; i<8; ++i)
     {
         Course *pCourse = new Course(this);
+        connect(pCourse, SIGNAL(unlockNext()), this, SLOT(sUnlockNext()));
         _vecCourse.push_back(pCourse);
         pCourse->SetCurricula("classBg1");
         pCourse->HideKeGenDanLab();
@@ -258,6 +259,20 @@ void SyllabusWidget::sUserscoreResponse(QVariant response)
                 course->setScore(userScore.sScore);
                 break;
             }
+        }
+    }
+}
+
+void SyllabusWidget::sUnlockNext()
+{
+    Course *c = qobject_cast<Course *>(sender());
+    for (int i = 0; i < _vecCourse.size(); i++)
+    {
+        Course *course = _vecCourse.at(i);
+        if (course == c && i < _vecCourse.size() - 1)
+        {
+            _vecCourse.at(i + 1)->SetScoringUnLock("non");
+            break;
         }
     }
 }

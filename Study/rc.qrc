@@ -40,7 +40,7 @@
         <file>images/Logon/date.png</file>
         <file>images/kegendan_2.png</file>
         <file>images/kegendan_1.png</file>
-	<file>images/bg.png</file>
+        <file>images/bg.png</file>
         <file>images/SyllabusBasicDlg/close.png</file>
         <file>images/SyllabusBasicDlg/bg.png</file>
         <file>images/SyllabusBasicDlg/button1.png</file>
@@ -60,5 +60,7 @@
         <file>images/small.png</file>
         <file>images/SyllabusBack2.png</file>
         <file>images/lock.png</file>
+        <file>images/fail.gif</file>
+        <file>images/success.gif</file>
     </qresource>
 </RCC>
