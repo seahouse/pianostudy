@@ -24,11 +24,14 @@ public:
     void UpdateQMXS_UI(const MUSIC_INFO &mi); //更新曲目欣赏界面
     void InitUI();
     void SetScoringClok(QString sArg);
-    void SetScoringUnLock(QString sArg);
+    void SetScoringUnLock(QString sArg, const QString &score = QString("0"));
 	QPixmap PixmapToRound(const QPixmap &src, int radius);
 
     QString getCourseId() const;
-    void setScore(const QString &score);
+
+    int score() const;
+    bool locked() const { return _locked; }
+
 
 signals:
     void unlockNext();
@@ -46,6 +49,7 @@ private:
     CLASS_INFO _classInfo;
     MUSIC_INFO _musicInfo;
     QString _sScoringNumStyleSheet;
+    bool _locked;
 
 public:
     void setAutoFirst(const AUTO_FIRST auotofirst);

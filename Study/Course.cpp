@@ -22,7 +22,8 @@ extern QString g_sUrlHead;
 
 Course::Course(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Course)
+    ui(new Ui::Course),
+    _locked(true)
 {
     ui->setupUi(this);
     this->setCursor((QCursor(Qt::PointingHandCursor)));
@@ -63,14 +64,16 @@ void Course::SetScoringClok(QString sArg)
     ui->_pScoringNumLab->setGeometry(349, 22, 58,57);
     ui->_pScoringNumLab->setStyleSheet(_sScoringNumStyleSheet.arg(sArg));
     ui->_pScoringNumLab->setText("");
+    _locked = true;
 }
 
-void Course::SetScoringUnLock(QString sArg)
+void Course::SetScoringUnLock(QString sArg, const QString &score)
 {
     ui->_pScoringLab->setText("我的分数");
     ui->_pScoringNumLab->setGeometry(362, 46, 33, 24);
     ui->_pScoringNumLab->setStyleSheet(_sScoringNumStyleSheet.arg(sArg));
-    ui->_pScoringNumLab->setText("0");
+    ui->_pScoringNumLab->setText(score);
+    _locked = false;
 }
 
 void Course::paintEvent(QPaintEvent *event)
@@ -181,11 +184,15 @@ void Course::mousePressEvent(QMouseEvent *event)
 {
     if( this->parent()->objectName() == "基础课程" )
     {
-        SyllabusBasicDlg sbd( _classInfo, (Widget*)this->parent()->parent(), this );
-        AllWidget *alwidget=new AllWidget;
-        connect(&sbd,SIGNAL(setAllWindow(QObject*,double,double)),alwidget,SLOT(setAllCorrectLocalTHREE(QObject*,double,double)));
-        connect(QApplication::desktop(),SIGNAL(resized(int)),&sbd,SLOT(resized(int)));
-        sbd.exec();
+        // 如果没有上锁，才能打开学习
+        if (!_locked)
+        {
+            SyllabusBasicDlg sbd( _classInfo, (Widget*)this->parent()->parent(), this );
+            AllWidget *alwidget=new AllWidget;
+            connect(&sbd,SIGNAL(setAllWindow(QObject*,double,double)),alwidget,SLOT(setAllCorrectLocalTHREE(QObject*,double,double)));
+            connect(QApplication::desktop(),SIGNAL(resized(int)),&sbd,SLOT(resized(int)));
+            sbd.exec();
+        }
     }
     else if( this->parent()->objectName() == "曲目欣赏" )
     {
@@ -245,7 +252,7 @@ QString Course::getCourseId() const
     return _classInfo.sCourseId;
 }
 
-void Course::setScore(const QString &score)
+int Course::score() const
 {
-    ui->_pScoringNumLab->setText(score);
+    return ui->_pScoringNumLab->text().toInt();
 }

@@ -256,9 +256,21 @@ void SyllabusWidget::sUserscoreResponse(QVariant response)
         foreach (Course *course, _vecCourse) {
             if (course->getCourseId() == userScore.sCourseId)
             {
-                course->setScore(userScore.sScore);
+//                course->setScore(userScore.sScore);
+                course->SetScoringUnLock("non", userScore.sScore);
                 break;
             }
+        }
+    }
+
+    // 遍历课程列表，根据最后一个分数确定是否要开发下一课程
+    for (int i = 0; i < _vecCourse.size(); i++)
+    {
+        Course *course = _vecCourse.at(i);
+        if (course->locked() && i > 0 && _vecCourse.at(i - 1)->score() >= 90)
+        {
+            course->SetScoringUnLock("non");
+            break;
         }
     }
 }
