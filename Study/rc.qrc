@@ -62,5 +62,6 @@
         <file>images/lock.png</file>
         <file>images/fail.gif</file>
         <file>images/success.gif</file>
+        <file>qss/global.qss</file>
     </qresource>
 </RCC>

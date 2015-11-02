@@ -79,11 +79,8 @@
      <x>60</x>
      <y>360</y>
      <width>450</width>
-     <height>171</height>
+     <height>211</height>
     </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
    </property>
    <widget class="QLineEdit" name="_pLoginIdEdit">
     <property name="geometry">
@@ -272,6 +269,31 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblMsg">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>170</y>
+      <width>291</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>300</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 150);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -657,16 +679,6 @@
      <bool>true</bool>
     </property>
    </widget>
-  </widget>
-  <widget class="QCalendarWidget" name="_pCalendarWidget">
-   <property name="geometry">
-    <rect>
-     <x>820</x>
-     <y>460</y>
-     <width>248</width>
-     <height>197</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources/>

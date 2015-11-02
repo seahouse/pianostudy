@@ -332,12 +332,12 @@ void NetWork::ParseJson(QByteArray &byteArray)
             }
             else
             {
-                if (_sParseUiName == "LogonDlg")  /// 解析登录
+                if (_sParseUiName == "LogonDlg" || _sParseUiName == "LogonDlg2")  /// 解析登录
                 {
                     parseLogin(jsonObj);
                     return;
                 }
-                else if (_sParseUiName == "LogonDlg_reg")   /// 解析注册
+                else if (_sParseUiName == "LogonDlg_reg" || _sParseUiName == "LogonDlg2_reg")   /// 解析注册
                 {
                     parseReg(jsonObj);
                     return;

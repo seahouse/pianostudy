@@ -3,6 +3,8 @@
 
 #include "NetWork.h"
 #include <QMessageBox>
+#include <QCalendarWidget>
+#include "msgbox.h"
 
 LogonDlg::LogonDlg(QWidget *parent) :
     QDialog(parent),
@@ -41,40 +43,15 @@ LogonDlg::LogonDlg(QWidget *parent) :
         ui->_pRegisterDateLab->setStyleSheet(sEditStyleSheet);
         ui->_pRegisterBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/registerBtn.png);}");
         ui->_pRegisterExitBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/cancelBtn.png);}");
-//        ui->_pRegisterDateEdit->setStyleSheet(sEditStyleSheet);
-//        ui->_pRegisterDateBtn->setStyleSheet("QPushButton{border-image:url(:/images/Logon/date.png);}");
         ui->_pRegisterUserLab->setStyleSheet("QLabel{color:red;}");
     }
 
-    //移动登录界面控件到合适的位置
-    {
-//        ui->_pLoginIdLab->move(98, 0);
-//        ui->_pLoginIdEdit->move(131, 0);
-//        ui->_pLoginPasswordLab->move(98, 56);
-//        ui->_pLoginPasswordEdit->move(131, 56);
-//        ui->_pLoginBtn->move(98, 126);
-//        ui->_pLoginExitBtn->move(252, 126);
-    }
+
 
     //移动注册界面控件到合适的位置
     {
-//        ui->_pRegisterPhoneLab->move(55, 9);
-//        ui->_pRegisterPhoneEdit->move(124, 0);
-//        ui->_pRegisterPasswordLab->move(55, 56);
-//        ui->_pRegisterPasswordEdit->move(124, 46);
-//        ui->_pRegisterNameLab->move(55, 102);
-//        ui->_pRegisterNameEdit->move(124, 93);
-//        ui->_pRegisterAddressLab->move(55, 148);
-//        ui->_pRegisterAddressEdit->move(124, 139);
-//        ui->_pRegisterDateLab->move(55, 194);
-//        ui->_pRegisterDateEdit->move(124, 185);
-//        ui->_pRegisterBtn->move(100, 246);
-//        ui->_pRegisterExitBtn->move(246, 246);
-
-//        ui->_pRegisterDateBtn->setParent(ui->_pRegisterDateEdit);
-//        ui->_pRegisterDateBtn->move(145, 5);
         ui->_pRegisterUserLab->move(310, 195);
-        ui->_pCalendarWidget->hide();
+//        ui->_pCalendarWidget->hide();
     }
 
     //移动各个子界面到合适状态
@@ -88,6 +65,9 @@ LogonDlg::LogonDlg(QWidget *parent) :
         ui->_pLoginWidget->move(3, 83);
         ui->_pLoginWidget->setStyleSheet("QWidget{border-image:non;}");
     }
+
+    ui->lblMsg->setObjectName("warning");
+    ui->lblMsg->setText("");
 
     ui->deBirthday->setDate(QDate::currentDate());
 //    connect(ui->_pRegisterDateBtn, SIGNAL(clicked(bool)), this, SLOT(sSelectDate()));
@@ -176,8 +156,13 @@ void LogonDlg::sLoginResponse(QVariant loginResponse)
     else
     {
         g_uid = "-1";
-        QMessageBox::critical(this, tr("登录失败"),
-                              tr("密码或用户名错误."));
+        ui->lblMsg->setText(tr("密码或手机号错误。"));
+        ui->lblMsg->setFixedSize(ui->lblMsg->sizeHint());
+
+//        Msgbox mb;
+//        mb.setInfo(tr("登录失败"), tr("密码或手机号错误。"));
+//        mb.exec();
+
     }
 }
 
@@ -189,15 +174,17 @@ void LogonDlg::sRegResponse(QVariant response)
     REG_RESPONSE data = response.value<REG_RESPONSE>();
     if (data.sStatus == "1")
     {
-        QMessageBox::information(this, tr("信息"),
-                                 tr("注册成功."));
+        Msgbox mb;
+        mb.setInfo(tr("信息"), tr("注册成功。"));
+        mb.exec();
         emit Go();
         this->close();
     }
     else
     {
-        QMessageBox::critical(this, tr("注册失败"),
-                              tr("注册失败."));
+        Msgbox mb;
+        mb.setInfo(tr("信息"), tr("注册失败。"));
+        mb.exec();
     }
 }
 

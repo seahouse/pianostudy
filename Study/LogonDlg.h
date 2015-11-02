@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QVariant>
 
+class QCalendarWidget;
+
 namespace Ui {
 class LogonDlg;
 }

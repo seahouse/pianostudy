@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include "LogonDlg.h"
+#include "logondlg2.h"
 #include "NetWork.h"
 #include<QMouseEvent>
 #include<QDesktopWidget>
@@ -85,6 +86,10 @@ Widget::Widget(QWidget *parent) :
     LogonDlg *pDlg = new LogonDlg(this);
     connect(pDlg, SIGNAL(Go()), this, SLOT(on__pLeftMenuBtn_1_pressed()));
     pDlg->show();
+
+//    LogonDlg2 *pDlg = new LogonDlg2(this);
+//    connect(pDlg, SIGNAL(Go()), this, SLOT(on__pLeftMenuBtn_1_pressed()));
+//    pDlg->show();
 }
 
 Widget::~Widget()

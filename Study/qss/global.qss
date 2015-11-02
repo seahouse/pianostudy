@@ -1,0 +1,63 @@
+QDialog#Msgbox
+{
+    background: lightgreen;
+}
+
+QDialog QLabel#title
+{
+    background: green;
+    font: bold;
+}
+
+QDialog QLabel#warning
+{
+    color: red;
+}
+
+QDialog QDialogButtonBox
+{
+    dialogbuttonbox-buttons-have-icons: 1;
+}
+
+QCalendarWidget QWidget { background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333); }
+
+QCalendarWidget QToolButton {
+    color: black;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+}
+
+QCalendarWidget QMenu {
+        color: white;
+        background-color: rgb(100, 100, 100);
+}
+QCalendarWidget QSpinBox {
+        color: white;
+        background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333);
+        selection-background-color: rgb(136, 136, 136);
+        selection-color: rgb(255, 255, 255);
+}
+QCalendarWidget QSpinBox::up-button { subcontrol-origin: border;  subcontrol-position: top right; }
+QCalendarWidget QSpinBox::down-button {subcontrol-origin: border; subcontrol-position: bottom right; }
+QCalendarWidget QSpinBox::up-arrow {  }
+QCalendarWidget QSpinBox::down-arrow { }
+
+/* header row */
+QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); }
+
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled
+{
+        color: rgb(180, 180, 180);
+        background-color: black;
+        selection-background-color: rgb(64, 64, 64);
+        selection-color: rgb(0, 255, 0);
+}
+
+/* days in other months */
+QCalendarWidget QAbstractItemView:disabled { color: rgb(64, 64, 64); }
+
+/* QWidget: 重要知识点 */
+QWidget#KeyKnowledge
+{
+    border-radius: 5px;
+}

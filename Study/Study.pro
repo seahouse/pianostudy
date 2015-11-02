@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     allwidget.cpp \
     autofirstdialog.cpp \
     keyknowledge.cpp \
-    GlobalInfo.cpp
+    GlobalInfo.cpp \
+    msgbox.cpp
 
 HEADERS  += widget.h \
     CapBtn.h \
@@ -52,7 +53,8 @@ HEADERS  += widget.h \
     mytextbrower.h \
     allwidget.h \
     autofirstdialog.h \
-    keyknowledge.h
+    keyknowledge.h \
+    msgbox.h
 
 FORMS    += widget.ui \
     MenuBtn.ui \
@@ -65,9 +67,12 @@ FORMS    += widget.ui \
     LogonDlg.ui \
     VideoPlayerWidget.ui \
     autofirstdialog.ui \
-    keyknowledge.ui
+    keyknowledge.ui \
+    msgbox.ui
 
 RESOURCES += \
     rc.qrc
 
 DISTFILES +=
+
+OTHER_FILES += qss/global.qss
