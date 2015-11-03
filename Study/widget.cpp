@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include <QDebug>
 #include "LogonDlg.h"
-#include "logondlg2.h"
 #include "NetWork.h"
 #include<QMouseEvent>
 #include<QDesktopWidget>

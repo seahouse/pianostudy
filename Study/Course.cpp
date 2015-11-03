@@ -74,6 +74,10 @@ void Course::SetScoringUnLock(QString sArg, const QString &score)
     ui->_pScoringNumLab->setStyleSheet(_sScoringNumStyleSheet.arg(sArg));
     ui->_pScoringNumLab->setText(score);
     _locked = false;
+
+    // 将分数记录到课程结构体
+    if (score.toInt() > 0)
+        _classInfo.iScore = score.toInt();
 }
 
 void Course::paintEvent(QPaintEvent *event)

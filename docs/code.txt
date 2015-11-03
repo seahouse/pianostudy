@@ -11,6 +11,7 @@
 		获取用户课程分数	http://120.55.119.93/course/index.php?m=Api&c=Course&a=courseListByUid&uid=3
 		课程	Course
 			基础课程	SyllabusBasicDlg
+				
 				课后习题	PraxisDlg
 					请求课程列表	http://120.55.119.93/course/index.php?m=Api&c=Question&a=questionList&page=1&rows=7&course_id=12
 					计分			http://120.55.119.93/course/index.php?m=Api&c=user&a=score&uid=15&cid=12&score=16

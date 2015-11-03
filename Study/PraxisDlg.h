@@ -30,7 +30,7 @@ class PraxisDlg : public QDialog
 signals:
     void SetLookToPage(int n); //通知_menuBtn观看到了第几页，n：按钮上的数字文本
 public:
-    explicit PraxisDlg(QString sCourseID, QWidget *parent, QObject *pCourseObj);
+    explicit PraxisDlg(QString sCourseID, int iScore, QWidget *parent, QObject *pCourseObj);
     ~PraxisDlg();
     void Start(); //开始选择第一页
 private slots:
@@ -56,7 +56,7 @@ private:
     bool _b; //临时的以后修改menubtn类就会删掉
     QObject *_pCourseObj;
     int _total;     // 习题总个数，用于计算分数
-
+    int _score;     // 分数
 
 
 

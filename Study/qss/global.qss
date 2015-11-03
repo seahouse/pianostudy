@@ -61,3 +61,13 @@ QWidget#KeyKnowledge
 {
     border-radius: 5px;
 }
+
+QPushButton#submit
+{
+    border-image: url(:/images/PraxisDlg/submit.png);
+}
+
+QPushButton#submit_disable
+{
+    border-image: url(:/images/PraxisDlg/submit_disable.png);
+}

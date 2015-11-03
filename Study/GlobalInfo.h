@@ -23,6 +23,7 @@ struct CLASS_INFO //课程信息
     QString sCreateDate; //创建日期
     QString sCtype;//视频还是yingping
     QString sAudio_pic;//音频tupian
+    int iScore;         //分数
 };
 
 struct MUSIC_INFO

@@ -63,5 +63,6 @@
         <file>images/fail.gif</file>
         <file>images/success.gif</file>
         <file>qss/global.qss</file>
+        <file>images/PraxisDlg/submit_disable.png</file>
     </qresource>
 </RCC>

@@ -264,7 +264,7 @@ void SyllabusBasicDlg::on__pBtn2_clicked()
     */
     //    QString sUrl = "http://120.55.119.93/course/index.php?m=Api&c=Question&a=questionList&page=1&rows=7&course_id=%1";
     if(pd==NULL){
-        pd =new PraxisDlg(_classInfo.sCourseId, this, _pCourseObj);
+        pd =new PraxisDlg(_classInfo.sCourseId, _classInfo.iScore, this, _pCourseObj);
         AllWidget *alllwidget=new AllWidget;
         connect(pd,SIGNAL(setAllWindow(QObject*,double,double)),alllwidget,SLOT(setAllCorrectLocalTWO(QObject*,double,double)));
         connect(QApplication::desktop(),SIGNAL(resized(int)),pd,SLOT(resized(int)));

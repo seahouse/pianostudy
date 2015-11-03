@@ -16,10 +16,11 @@ double PraxisDlg::previousHeight=0.0;
 int PraxisDlg::desktopX=0;
 int PraxisDlg::desktopY=0;
 
-PraxisDlg::PraxisDlg(QString sCourseId, QWidget *parent, QObject *pCourseObj) :
+PraxisDlg::PraxisDlg(QString sCourseId, int iScore, QWidget *parent, QObject *pCourseObj) :
     QDialog(parent),ready(false),
     ui(new Ui::PraxisDlg),_menuBtn(178, 6),_b(true),
-    _total(0)
+    _total(0),
+    _score(iScore)
 {
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -41,7 +42,8 @@ PraxisDlg::PraxisDlg(QString sCourseId, QWidget *parent, QObject *pCourseObj) :
     //关闭按钮
     ui->_pCloseBtn->setStyleSheet("QPushButton{border-image:url(:/images/SyllabusBasicDlg/close.png);}");
     //提交按钮
-    ui->_pSbumitBtn->setStyleSheet("QPushButton{border-image: url(:/images/PraxisDlg/submit.png);}");
+    // 修改为使用objectname 来控制按钮样式: 20151103
+//    ui->_pSbumitBtn->setStyleSheet("QPushButton{border-image: url(:/images/PraxisDlg/submit.png);}");
     //按钮栏
     _menuBtn.setParent(ui->_pMenuBtnParentWidget);
     connect(this, SIGNAL(SetLookToPage(int)), &_menuBtn, SLOT(GetLookToPage(int)));
@@ -62,6 +64,17 @@ PraxisDlg::PraxisDlg(QString sCourseId, QWidget *parent, QObject *pCourseObj) :
     connect(_timer, SIGNAL(timeout()), this, SLOT(sTimeout()));
     _lblGif = new QLabel(this);
     _lblGif->setWindowFlags(Qt::FramelessWindowHint);
+
+    // 如果超过90分，则无法点击提交：设置提交按钮状态
+    if (_score >= 90)
+    {
+        ui->_pSbumitBtn->setEnabled(false);
+        ui->_pSbumitBtn->setObjectName("submit_disable");
+        // 加载用户分数
+
+    }
+    else
+        ui->_pSbumitBtn->setObjectName("submit");
 }
 
 PraxisDlg::~PraxisDlg()
