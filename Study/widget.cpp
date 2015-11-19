@@ -83,7 +83,7 @@ Widget::Widget(QWidget *parent) :
 
 
     LogonDlg *pDlg = new LogonDlg(this);
-    connect(pDlg, SIGNAL(Go()), this, SLOT(on__pLeftMenuBtn_1_pressed()));
+    connect(pDlg, SIGNAL(Go()), this, SLOT(sLoginGo()));
     pDlg->show();
 
 //    LogonDlg2 *pDlg = new LogonDlg2(this);
@@ -106,6 +106,11 @@ void Widget::paintEvent(QPaintEvent *event)
     painter.setPen(oldpen);
 }
 
+void Widget::sLoginGo()
+{
+    ui->_pHeadInfoLab->setText(tr("欢迎") + g_username + tr("登陆\n您是成人登陆"));
+    on__pLeftMenuBtn_1_pressed();
+}
 
 void Widget::on__pLeftMenuBtn_1_pressed()
 {

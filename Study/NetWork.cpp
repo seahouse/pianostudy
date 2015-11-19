@@ -229,6 +229,10 @@ void NetWork::parseLogin(const QJsonObject &jsonObject)
     {
         loginResponse.sMsg = jsonObject.value("msg").toString();
     }
+    if (jsonObject.contains("username"))
+    {
+        loginResponse.sUsername = jsonObject.value("username").toString();
+    }
 
     QVariant var;
     var.setValue(loginResponse);

@@ -150,6 +150,7 @@ void LogonDlg::sLoginResponse(QVariant loginResponse)
     if (data.sStatus == "1")
     {
         g_uid = data.sMsg;
+        g_username = data.sUsername;
         emit Go();
         this->close();
     }

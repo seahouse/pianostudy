@@ -21,6 +21,8 @@ public:
 
 private slots:
 
+    void sLoginGo();
+
     void on__pLeftMenuBtn_1_pressed();
 
     void on__pLeftMenuBtn_2_pressed();

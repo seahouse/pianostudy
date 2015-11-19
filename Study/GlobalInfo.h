@@ -64,6 +64,7 @@ struct LOGIN_RESPONSE
 {
     QString sStatus;
     QString sMsg;
+    QString sUsername;
 };
 
 struct REG_RESPONSE
@@ -82,6 +83,7 @@ struct USER_SCORE
 enum Direction { UP=0, DOWN=1, LEFT, RIGHT, LEFTTOP, LEFTBOTTOM, RIGHTBOTTOM, RIGHTTOP, NONE };
 
 extern QString g_uid;
+extern QString g_username;
 
 #endif // STRUCTINFO
 
