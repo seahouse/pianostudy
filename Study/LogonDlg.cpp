@@ -158,7 +158,7 @@ void LogonDlg::sLoginResponse(QVariant loginResponse)
     {
         g_uid = "-1";
         ui->lblMsg->setText(tr("密码或手机号错误。"));
-        ui->lblMsg->setFixedSize(ui->lblMsg->sizeHint());
+//        ui->lblMsg->setFixedSize(ui->lblMsg->sizeHint());
 
 //        Msgbox mb;
 //        mb.setInfo(tr("登录失败"), tr("密码或手机号错误。"));

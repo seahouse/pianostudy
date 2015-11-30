@@ -9,7 +9,6 @@
 #include<QDesktopWidget>
 
 
-
 double Widget::previousWidth=0.0;
 double Widget::previousHeight=0.0;
 int Widget::desktopX=0;
@@ -89,6 +88,9 @@ Widget::Widget(QWidget *parent) :
 //    LogonDlg2 *pDlg = new LogonDlg2(this);
 //    connect(pDlg, SIGNAL(Go()), this, SLOT(on__pLeftMenuBtn_1_pressed()));
 //    pDlg->show();
+
+    // temp
+    ui->_pBottomLab->hide();
 }
 
 Widget::~Widget()
