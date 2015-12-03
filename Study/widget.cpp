@@ -110,7 +110,10 @@ void Widget::paintEvent(QPaintEvent *event)
 
 void Widget::sLoginGo()
 {
-    ui->_pHeadInfoLab->setText(tr("欢迎") + g_username + tr("登陆\n您是成人登陆"));
+    QString msg = tr("欢迎") + g_username + tr("\n您是");
+    msg.append(g_persontype == 1 ? tr("儿童") : tr("成人"));
+    msg.append(tr("登录"));
+    ui->_pHeadInfoLab->setText(msg);
     on__pLeftMenuBtn_1_pressed();
 }
 

@@ -233,6 +233,10 @@ void NetWork::parseLogin(const QJsonObject &jsonObject)
     {
         loginResponse.sUsername = jsonObject.value("username").toString();
     }
+    if (jsonObject.contains("personType"))
+    {
+        loginResponse.iPersonType = jsonObject.value("personType").toInt();
+    }
 
     QVariant var;
     var.setValue(loginResponse);
@@ -251,6 +255,10 @@ void NetWork::parseReg(const QJsonObject &jsonObject)
     if (jsonObject.contains("msg"))
     {
         loginResponse.sMsg = jsonObject.value("msg").toString();
+    }
+    if (jsonObject.contains("personType"))
+    {
+        loginResponse.iPersonType = jsonObject.value("personType").toInt();
     }
 
     QVariant var;

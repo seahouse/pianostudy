@@ -65,12 +65,14 @@ struct LOGIN_RESPONSE
     QString sStatus;
     QString sMsg;
     QString sUsername;
+    int iPersonType;
 };
 
 struct REG_RESPONSE
 {
     QString sStatus;
     QString sMsg;
+    int iPersonType;
 };
 
 struct USER_SCORE
@@ -84,6 +86,7 @@ enum Direction { UP=0, DOWN=1, LEFT, RIGHT, LEFTTOP, LEFTBOTTOM, RIGHTBOTTOM, RI
 
 extern QString g_uid;
 extern QString g_username;
+extern int g_persontype;
 
 #endif // STRUCTINFO
 

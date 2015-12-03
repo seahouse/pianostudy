@@ -86,6 +86,7 @@ msg 错误信息 成功则返回 UID
 
 用户登录
 http://120.55.119.93/course/index.php?m=Api&c=user&a=login&username=
+http://120.55.119.93/course/index.php?m=Api&c=user&a=login&tel=%1&pwd=%2
 参数说明 (特殊字符及中文需做URL编码处理)
 tel  用户名
 pwd   密码

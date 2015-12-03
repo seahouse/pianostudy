@@ -50,7 +50,8 @@ LogonDlg::LogonDlg(QWidget *parent) :
 
     //移动注册界面控件到合适的位置
     {
-        ui->_pRegisterUserLab->move(310, 195);
+        ui->_pRegisterUserLab->move(310, 210);
+        ui->_pRegisterUserLab->hide();
 //        ui->_pCalendarWidget->hide();
     }
 
@@ -58,16 +59,19 @@ LogonDlg::LogonDlg(QWidget *parent) :
     {
         ui->_pParentWidget->move(372, 210);
         ui->_pRegisterWidget->setParent(ui->_pParentWidget);
-        ui->_pRegisterWidget->move(3, 83);
+        ui->_pRegisterWidget->move(3, 50);
         ui->_pRegisterWidget->hide();
         ui->_pRegisterWidget->setStyleSheet("QWidget{border-image:non;}");
         ui->_pLoginWidget->setParent(ui->_pParentWidget);
-        ui->_pLoginWidget->move(3, 83);
+        ui->_pLoginWidget->move(3, 50);
         ui->_pLoginWidget->setStyleSheet("QWidget{border-image:non;}");
     }
 
     ui->lblMsg->setObjectName("warning");
     ui->lblMsg->setText("");
+
+    ui->lblInfo->setObjectName("warning");
+    ui->lblInfo->setText("");
 
     ui->deBirthday->setDate(QDate::currentDate());
 //    connect(ui->_pRegisterDateBtn, SIGNAL(clicked(bool)), this, SLOT(sSelectDate()));
@@ -122,12 +126,18 @@ void LogonDlg::on__pRegisterBtn_clicked()
 {
     QString username = ui->_pRegisterNameEdit->text().trimmed();
     QString pwd = ui->_pRegisterPasswordEdit->text().trimmed();
+    if (pwd.size() < 6)
+    {
+        ui->lblInfo->setText(tr("密码长度不能小于6位"));
+        return;
+    }
     QString tel = ui->_pRegisterPhoneEdit->text().trimmed();
     QString addr = ui->_pRegisterAddressEdit->text().trimmed();
 //    QString birthday = ui->_pRegisterDateEdit->text().trimmed();
     QString birthday = ui->deBirthday->text().trimmed();
     QString sUrl = QString("http://120.55.119.93/course/index.php?m=Api&c=user&a=reg&username=%1&pwd=%2&tel=%3&addr=%4&birthday=%5")
             .arg(username).arg(pwd).arg(tel).arg(addr).arg(birthday);
+    g_username = username;
 
     NetWork *pNetWork = NetWork::GetInstance();
     connect(pNetWork, SIGNAL(regResponse(QVariant)), this, SLOT(sRegResponse(QVariant)));
@@ -151,6 +161,7 @@ void LogonDlg::sLoginResponse(QVariant loginResponse)
     {
         g_uid = data.sMsg;
         g_username = data.sUsername;
+        g_persontype = data.iPersonType;
         emit Go();
         this->close();
     }
@@ -175,17 +186,20 @@ void LogonDlg::sRegResponse(QVariant response)
     REG_RESPONSE data = response.value<REG_RESPONSE>();
     if (data.sStatus == "1")
     {
-        Msgbox mb;
-        mb.setInfo(tr("信息"), tr("注册成功。"));
-        mb.exec();
+//        Msgbox mb;
+//        mb.setInfo(tr("信息"), tr("注册成功。"));
+//        mb.exec();
+        g_uid = data.sMsg;
+        g_persontype = data.iPersonType;
         emit Go();
         this->close();
     }
     else
     {
-        Msgbox mb;
-        mb.setInfo(tr("信息"), tr("注册失败。"));
-        mb.exec();
+//        Msgbox mb;
+//        mb.setInfo(tr("信息"), tr("注册失败。"));
+//        mb.exec();
+        ui->lblInfo->setText(tr("注册失败。"));
     }
 }
 
